@@ -647,9 +647,77 @@ function findItemKey(object) {
   return null;
 }
 
+function ItemOutlines({ rootRef, hoveredKey }) {
+  const entries = useRef(new Map());
+  const hoveredRef = useRef(hoveredKey);
+  const frame = useRef(0);
+  hoveredRef.current = hoveredKey;
+
+  const outlineMaterial = useMemo(() => new THREE.LineBasicMaterial({ color: "#000000" }), []);
+  const hoverMaterial = useMemo(() => new THREE.LineBasicMaterial({ color: "#38bdf8" }), []);
+
+  const sync = useCallback(() => {
+    const root = rootRef.current;
+    if (!root) return;
+
+    const alive = new Set();
+    root.traverse(object => {
+      if (!object.isMesh || !object.geometry || !findItemKey(object)) return;
+      alive.add(object);
+
+      const existing = entries.current.get(object);
+      if (existing && existing.source === object.geometry) return;
+
+      if (existing) {
+        existing.lines.removeFromParent();
+        existing.lines.geometry.dispose();
+      }
+
+      const lines = new THREE.LineSegments(
+        new THREE.EdgesGeometry(object.geometry, 20),
+        findItemKey(object) === hoveredRef.current ? hoverMaterial : outlineMaterial,
+      );
+      lines.renderOrder = 2;
+      lines.raycast = () => {};
+      lines.userData.itemOutline = true;
+      object.add(lines);
+      entries.current.set(object, { lines, source: object.geometry });
+    });
+
+    for (const [mesh, entry] of entries.current) {
+      if (alive.has(mesh)) continue;
+      entry.lines.removeFromParent();
+      entry.lines.geometry.dispose();
+      entries.current.delete(mesh);
+    }
+  }, [hoverMaterial, outlineMaterial, rootRef]);
+
+  useFrame(() => {
+    // Item models (including GLB assets) can arrive asynchronously.
+    if (frame.current++ % 12 === 0) sync();
+  });
+
+  useEffect(() => {
+    for (const [mesh, entry] of entries.current) {
+      entry.lines.material = findItemKey(mesh) === hoveredKey ? hoverMaterial : outlineMaterial;
+    }
+  }, [hoverMaterial, hoveredKey, outlineMaterial]);
+
+  useEffect(() => () => {
+    for (const entry of entries.current.values()) {
+      entry.lines.removeFromParent();
+      entry.lines.geometry.dispose();
+    }
+    entries.current.clear();
+  }, []);
+
+  return null;
+}
+
 export default function SceneCanvas({ room, onSelect, onHover, controls, onModelError }) {
   const root = useRef();
   const [roomModel, setRoomModel] = useState(null);
+  const [hoveredKey, setHoveredKey] = useState(null);
   const { camera, gl } = useThree();
   const raycaster = useMemo(() => new THREE.Raycaster(), []);
   const pointer = useMemo(() => new THREE.Vector2(), []);
@@ -659,6 +727,7 @@ export default function SceneCanvas({ room, onSelect, onHover, controls, onModel
 
   useEffect(() => {
     setRoomModel(null);
+    setHoveredKey(null);
     if (!controls.current) return;
     controls.current.target.set(0, .9, 0);
     camera.position.set(14, 12.5, 14);
@@ -694,8 +763,14 @@ export default function SceneCanvas({ room, onSelect, onHover, controls, onModel
     };
     const move = event => {
       const key = getHit(event);
+      setHoveredKey(previous => (previous === key ? previous : key));
       onHover(key, event.clientX, event.clientY);
       canvas.style.cursor = key ? "pointer" : "grab";
+    };
+    const leave = () => {
+      setHoveredKey(null);
+      onHover(null, 0, 0);
+      canvas.style.cursor = "grab";
     };
     const down = event => { pointerDown.current = [event.clientX, event.clientY]; };
     const up = event => {
@@ -708,10 +783,12 @@ export default function SceneCanvas({ room, onSelect, onHover, controls, onModel
       }
     };
     canvas.addEventListener("pointermove", move);
+    canvas.addEventListener("pointerleave", leave);
     canvas.addEventListener("pointerdown", down);
     canvas.addEventListener("pointerup", up);
     return () => {
       canvas.removeEventListener("pointermove", move);
+      canvas.removeEventListener("pointerleave", leave);
       canvas.removeEventListener("pointerdown", down);
       canvas.removeEventListener("pointerup", up);
     };
@@ -743,6 +820,7 @@ export default function SceneCanvas({ room, onSelect, onHover, controls, onModel
             <ItemContainer room={room} />
           </>
         )}
+        <ItemOutlines rootRef={root} hoveredKey={hoveredKey} />
       </group>
     </>
   );
