@@ -11,9 +11,9 @@ Create a production build with `npm run build`.
 
 ## Languages
 
-ChemHouse 3D is available in English and Spanish. Use the language selector in the
-top bar; the selected language is saved in this browser. Add translations in
-`src/i18n.jsx` when introducing another language.
+ChemHouse 3D is available in English, Spanish, and Portuguese. Use the language
+selector in the top bar; the selected language is saved in this browser. Add
+translations in `src/i18n.jsx` when introducing another language.
 
 ## Household item models
 
