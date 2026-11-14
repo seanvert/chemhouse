@@ -48,8 +48,10 @@ const messages = {
     modelLoadError: "Room model failed to load; showing the built-in room instead.",
     credits: "Credits",
     creditsTitle: "3D model credits",
-    creditsIntro: "Household item models are ready-made low-poly assets from Poly Pizza, Quaternius, Kenney, and other creators.",
+    creditsIntro: "Household item and furniture models are ready-made low-poly assets from Poly Pizza, Quaternius, Kenney, CreativeTrio, and other creators.",
     creditsNote: "CC0 assets are public domain. CC BY 3.0 assets are credited to their authors; follow the source links for license details.",
+    itemCredits: "Household items",
+    furnitureCredits: "Furniture",
     viewSource: "View source",
     rooms: {
       kitchen: "Kitchen",
@@ -101,8 +103,10 @@ const messages = {
     modelLoadError: "No se pudo cargar el modelo de la habitación; se muestra el modelo integrado.",
     credits: "Créditos",
     creditsTitle: "Créditos de modelos 3D",
-    creditsIntro: "Los modelos de objetos domésticos son recursos low-poly de Poly Pizza, Quaternius, Kenney y otros creadores.",
+    creditsIntro: "Los modelos de objetos domésticos y muebles son recursos low-poly de Poly Pizza, Quaternius, Kenney, CreativeTrio y otros creadores.",
     creditsNote: "Los recursos CC0 son de dominio público. Los recursos CC BY 3.0 se atribuyen a sus autores; consulta los enlaces para ver los detalles de la licencia.",
+    itemCredits: "Objetos domésticos",
+    furnitureCredits: "Muebles",
     viewSource: "Ver fuente",
     rooms: {
       kitchen: "Cocina",

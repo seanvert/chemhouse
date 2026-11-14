@@ -5,6 +5,7 @@ import { CHEMICALS, ITEMS, QUESTS, ROOMS } from "./data.js";
 import Inspector from "./Inspector.jsx";
 import { LANGUAGES, useI18n } from "./i18n.jsx";
 import { ITEM_CREDITS } from "./itemAssets.js";
+import { FURNITURE_CREDITS } from "./furnitureAssets.js";
 import SceneCanvas from "./Scene.jsx";
 
 const STORAGE_KEY = "chemhouse_discovered_v1";
@@ -300,16 +301,31 @@ export default function App() {
               </div>
               <button className="close-btn" title={t("close")} onClick={() => setCreditsOpen(false)}>✕</button>
             </div>
-            <div className="dex-grid credits-grid">
-              {ITEM_CREDITS.map(credit => (
-                <div key={credit.key} className="dex-item unlocked">
-                  <div className="dex-name">{credit.title}</div>
-                  <div className="dex-meta">{credit.author} • {credit.license}</div>
-                  <a className="credit-link" href={credit.url} target="_blank" rel="noreferrer">
-                    {t("viewSource")} ↗
-                  </a>
-                </div>
-              ))}
+            <div className="credits-scroll">
+              <h3 className="credits-subtitle">{t("itemCredits")}</h3>
+              <div className="dex-grid credits-grid">
+                {ITEM_CREDITS.map(credit => (
+                  <div key={credit.key} className="dex-item unlocked">
+                    <div className="dex-name">{credit.title}</div>
+                    <div className="dex-meta">{credit.author} • {credit.license}</div>
+                    <a className="credit-link" href={credit.url} target="_blank" rel="noreferrer">
+                      {t("viewSource")} ↗
+                    </a>
+                  </div>
+                ))}
+              </div>
+              <h3 className="credits-subtitle">{t("furnitureCredits")}</h3>
+              <div className="dex-grid credits-grid">
+                {FURNITURE_CREDITS.map(credit => (
+                  <div key={credit.key} className="dex-item unlocked">
+                    <div className="dex-name">{credit.title}</div>
+                    <div className="dex-meta">{credit.author} • {credit.license}</div>
+                    <a className="credit-link" href={credit.url} target="_blank" rel="noreferrer">
+                      {t("viewSource")} ↗
+                    </a>
+                  </div>
+                ))}
+              </div>
             </div>
             <p className="credit-note">{t("creditsNote")}</p>
           </section>

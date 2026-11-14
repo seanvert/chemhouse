@@ -5,6 +5,7 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { ITEMS } from "./data.js";
 import { ITEM_ASSETS } from "./itemAssets.js";
+import { FURNITURE, ROOM_FURNITURE } from "./furnitureAssets.js";
 
 function Box({ size, position, color, rotation = [0, 0, 0], roughness = .72, metalness = .02, castShadow = true }) {
   return (
@@ -424,20 +425,20 @@ function ItemModel({ item }) {
   }
 }
 
-const itemAssetCache = new Map();
+const gltfAssetCache = new Map();
 
-function loadItemAsset(url) {
-  if (!itemAssetCache.has(url)) {
+function loadGltfAsset(url) {
+  if (!gltfAssetCache.has(url)) {
     const loader = new GLTFLoader();
     const promise = new Promise((resolve, reject) => {
       loader.load(url, gltf => resolve(gltf.scene), undefined, reject);
     }).catch(error => {
-      itemAssetCache.delete(url);
+      gltfAssetCache.delete(url);
       throw error;
     });
-    itemAssetCache.set(url, promise);
+    gltfAssetCache.set(url, promise);
   }
-  return itemAssetCache.get(url);
+  return gltfAssetCache.get(url);
 }
 
 function recolorMaterials(object, recolor) {
@@ -456,7 +457,7 @@ function recolorMaterials(object, recolor) {
   });
 }
 
-function prepareItemAsset(source, asset) {
+function prepareGltfAsset(source, asset) {
   const clone = source.clone(true);
   recolorMaterials(clone, asset.recolor);
   const wrapper = new THREE.Group();
@@ -495,7 +496,7 @@ function GltfItemModel({ asset, fallback, onError }) {
 
   useEffect(() => {
     let active = true;
-    loadItemAsset(asset.url).then(scene => {
+    loadGltfAsset(asset.url).then(scene => {
       if (active) setSource(scene);
     }).catch(error => {
       console.warn(`Could not load item model ${asset.url}:`, error);
@@ -505,7 +506,7 @@ function GltfItemModel({ asset, fallback, onError }) {
   }, [asset.url]);
 
   const model = useMemo(
-    () => (source ? prepareItemAsset(source, asset) : null),
+    () => (source ? prepareGltfAsset(source, asset) : null),
     [source, asset],
   );
 
@@ -547,6 +548,41 @@ function ItemContainer({ room }) {
   return Object.entries(ITEMS)
     .filter(([, item]) => item.room === room)
     .map(([key, item]) => <InteractiveItem key={key} itemKey={key} item={item} />);
+}
+
+function FurniturePiece({ piece }) {
+  const asset = FURNITURE[piece.model];
+  const [source, setSource] = useState(null);
+
+  useEffect(() => {
+    if (!asset) return undefined;
+    let active = true;
+    loadGltfAsset(asset.url).then(scene => {
+      if (active) setSource(scene);
+    }).catch(error => {
+      console.warn(`Could not load furniture model ${asset.url}:`, error);
+    });
+    return () => { active = false; };
+  }, [asset]);
+
+  const model = useMemo(
+    () => (source && asset ? prepareGltfAsset(source, asset) : null),
+    [source, asset],
+  );
+
+  if (!asset || !model) return null;
+  return (
+    <group position={piece.position} rotation={piece.rotation || [0, 0, 0]}>
+      <primitive object={model} />
+    </group>
+  );
+}
+
+function RoomFurniture({ room }) {
+  const pieces = ROOM_FURNITURE[room] || [];
+  return pieces.map((piece, index) => (
+    <FurniturePiece key={`${piece.model}-${index}`} piece={piece} />
+  ));
 }
 
 function ImportedRoom({ room, onModel, onError }) {
@@ -683,6 +719,7 @@ export default function SceneCanvas({ room, onSelect, onHover, controls, onModel
           <>
             <RoomShell room={room} />
             {roomFurniture}
+            <RoomFurniture room={room} />
             <ItemContainer room={room} />
           </>
         )}

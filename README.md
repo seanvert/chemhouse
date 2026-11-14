@@ -45,18 +45,38 @@ Item keys must match `item.kind` in `src/data.js` — not always the item's key 
 `ITEMS`. For example, the baking soda item uses the kind `box` and the smartphone
 uses the kind `phone`.
 
+## Furniture models
+
+The rooms are also filled with ready-made low-poly furniture from
+[Poly Pizza](https://poly.pizza). The files live in
+`public/models/furniture/` and are bundled with the app, so furniture works
+offline too.
+
+`src/furnitureAssets.js` has two exports:
+
+- `FURNITURE` describes each asset (`url`, `fit`, optional `rotation`), using the
+  same preparation rules as the household items.
+- `ROOM_FURNITURE` lists every placement: `{ model, position, rotation }`.
+
+`src/Scene.jsx` renders those placements for the active room as non-interactive
+scenery. Hover and click detection only looks at meshes named for an item, so
+furniture never opens the Inspector. Add or move a piece by editing
+`ROOM_FURNITURE`; no changes to the chemistry data are needed.
+
 ## Credits and licenses
 
 The models use a CC0-first mix:
 
-- 14 models are CC0 1.0 and need no attribution.
-- 4 models are CC BY 3.0: the bleach jug (Poly by Google), car battery
+- 14 household items are CC0 1.0 and need no attribution.
+- 4 household items are CC BY 3.0: the bleach jug (Poly by Google), car battery
   (J-Toastie), paint can (Jarlan Perez), and fire extinguisher (Jarlan Perez).
+- All furniture is CC0 1.0 and needs no attribution.
 
 The in-app **Credits** button in the top bar lists every asset with its author,
 license, and source link. Full details, including the modifications made for
-this project, are in `public/models/items/ATTRIBUTION.md`. Keep that file and
-the Credits dialog in sync when replacing a model.
+this project, are in `public/models/items/ATTRIBUTION.md` and
+`public/models/furniture/ATTRIBUTION.md`. Keep those files and the Credits
+dialog in sync when replacing a model.
 
 ## Room models
 
