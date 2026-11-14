@@ -17,7 +17,7 @@ top bar; the selected language is saved in this browser. Add translations in
 
 ## Household item models
 
-All 18 clickable household items use ready-made low-poly GLB models from
+All 23 clickable household items use ready-made low-poly GLB models from
 [Poly Pizza](https://poly.pizza). The files are bundled in
 `public/models/items/`; the app does not hotlink them, so it also works offline.
 
@@ -67,7 +67,7 @@ furniture never opens the Inspector. Add or move a piece by editing
 
 The models use a CC0-first mix:
 
-- 14 household items are CC0 1.0 and need no attribution.
+- 19 household items are CC0 1.0 and need no attribution.
 - 4 household items are CC BY 3.0: the bleach jug (Poly by Google), car battery
   (J-Toastie), paint can (Jarlan Perez), and fire extinguisher (Jarlan Perez).
 - All furniture is CC0 1.0 and needs no attribution.
@@ -82,7 +82,7 @@ dialog in sync when replacing a model.
 
 The app includes procedural room shells and furniture. To replace a room with a
 Blender export, save the complete room as `public/models/<room>.glb`, where
-`<room>` is `kitchen`, `living`, `bathroom`, or `garage`.
+`<room>` is `kitchen`, `living`, `bedroom`, `bathroom`, or `garage`.
 
 Name each clickable Blender mesh `interact_<itemKey>` to connect it to the
 chemical data and item inspector. For example, name the bleach mesh

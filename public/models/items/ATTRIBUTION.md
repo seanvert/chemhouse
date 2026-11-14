@@ -1,6 +1,6 @@
 # Household item model attribution
 
-The 18 clickable household items in ChemHouse 3D use ready-made low-poly models
+The 23 clickable household items in ChemHouse 3D use ready-made low-poly models
 from [Poly Pizza](https://poly.pizza). Every file is bundled in this directory and
 loaded through `src/itemAssets.js`.
 
@@ -41,6 +41,11 @@ These models are public domain under [CC0 1.0](https://creativecommons.org/publi
 | Hot coffee mug | Mug | Kenney | https://poly.pizza/m/fis2ugeLbn | Body recolored teal, scaled, animated steam overlay |
 | Sparkling water can | Soda Can | Kenney | https://poly.pizza/m/KOLcdOATw6 | Recolored blue, scaled |
 | Super glue tube | Lotion Tube | MilkAndBanana | https://poly.pizza/m/tacHJc7TlK | Rotated to lie on the workbench, scaled |
+| Wool blanket | Bedroll | Kenney | https://poly.pizza/m/efwd5fjuMU | Recolored cream and brown, rotated across the foot of the bed, scaled |
+| Open book | Open Book | Quaternius | https://poly.pizza/m/FsCIGEfTEs | Scaled, placed on the desk |
+| Reading glasses | Glasses | iPoly3D | https://poly.pizza/m/p5QgQxkMBE | Scaled, placed on the nightstand |
+| Perfume bottle | Prop Bottle | Quaternius | https://poly.pizza/m/uRzqB8lopZ | Scaled, placed on the dresser |
+| Foam slippers | Slippers | Isa Lousberg | https://poly.pizza/m/XV1WqNYen3 | Scaled, placed on the rug |
 
 ## Notes
 

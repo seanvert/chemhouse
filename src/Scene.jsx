@@ -103,11 +103,12 @@ function RoomShell({ room }) {
   const floors = {
     kitchen: "#fef3c7",
     living: "#a16207",
+    bedroom: "#d6c7b0",
     bathroom: "#e0f2fe",
     garage: "#475569",
   };
-  const walls = { kitchen: "#f8fafc", living: "#f1f5f9", bathroom: "#f8fafc", garage: "#cbd5e1" };
-  const trims = { kitchen: "#cbd5e1", living: "#e2e8f0", bathroom: "#7dd3fc", garage: "#334155" };
+  const walls = { kitchen: "#f8fafc", living: "#f1f5f9", bedroom: "#f5f3ff", bathroom: "#f8fafc", garage: "#cbd5e1" };
+  const trims = { kitchen: "#cbd5e1", living: "#e2e8f0", bedroom: "#c4b5fd", bathroom: "#7dd3fc", garage: "#334155" };
   const grout = room === "bathroom" ? "#bae6fd" : "#e2e8f0";
   return (
     <>
@@ -192,6 +193,24 @@ function LivingRoom() {
       <Round size={[1.25, .85, 3.8]} position={[-4.2, .45, .9]} color="#334155" radius={.04} />
       <Round size={[.14, 1.9, 3.2]} position={[-4.65, 2, .9]} color="#0f172a" radius={.03} />
       <Box size={[.04, 1.65, 2.95]} position={[-4.57, 2, .9]} color="#0ea5e9" />
+    </>
+  );
+}
+
+function Bedroom() {
+  return (
+    <>
+      <Round size={[2.9, 1.95, .12]} position={[-1.7, 2.6, -4.9]} color="#e2e8f0" radius={.03} />
+      <Box size={[2.55, 1.6, .04]} position={[-1.7, 2.6, -4.82]} color="#bae6fd" />
+      <Box size={[.05, 1.6, .05]} position={[-1.7, 2.6, -4.79]} color="#f8fafc" />
+      <Box size={[2.55, .05, .05]} position={[-1.7, 2.6, -4.79]} color="#f8fafc" />
+      <Box size={[3.05, .08, .22]} position={[-1.7, 1.62, -4.8]} color="#e2e8f0" />
+      <Cylinder radiusTop={.03} height={3.4} position={[-1.7, 3.75, -4.62]} rotation={[0, 0, Math.PI / 2]} color="#92400e" />
+      <Round size={[.62, 2.25, .16]} position={[-3.25, 2.6, -4.56]} color="#f5e6d3" radius={.06} />
+      <Round size={[.62, 2.25, .16]} position={[-.15, 2.6, -4.56]} color="#f5e6d3" radius={.06} />
+      <Round size={[1.6, .98, .08]} position={[2.4, 2.85, -4.9]} color="#78350f" radius={.03} />
+      <Box size={[1.34, .74, .03]} position={[2.4, 2.85, -4.84]} color="#fda4af" />
+      <Box size={[.92, .16, .035]} position={[2.4, 2.9, -4.82]} color="#fef3c7" />
     </>
   );
 }
@@ -701,6 +720,7 @@ export default function SceneCanvas({ room, onSelect, onHover, controls, onModel
   const roomFurniture = {
     kitchen: <Kitchen />,
     living: <LivingRoom />,
+    bedroom: <Bedroom />,
     bathroom: <Bathroom />,
     garage: <Garage />,
   }[room];

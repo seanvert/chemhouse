@@ -85,6 +85,57 @@ export const FURNITURE = {
     url: "/models/furniture/stool.glb",
     fit: [.55, .7, .55],
   },
+  bed: {
+    url: "/models/furniture/bed.glb",
+    fit: [1.9, .95, 2.1],
+  },
+  nightstand: {
+    url: "/models/furniture/nightstand.glb",
+    fit: [.62, .6, .55],
+  },
+  dresser: {
+    url: "/models/furniture/dresser.glb",
+    fit: [.5, .9, 1.55],
+    // Turn the drawers into the room from the left wall.
+    rotation: [0, Math.PI / 2, 0],
+  },
+  wardrobe: {
+    url: "/models/furniture/wardrobe.glb",
+    fit: [.62, 2.1, 1.1],
+    // Doors face into the room from the left wall.
+    rotation: [0, Math.PI / 2, 0],
+  },
+  rug: {
+    url: "/models/furniture/rug.glb",
+    fit: [2.4, .04, 1.5],
+    recolor: { carpet: "#b9c8d4", carpetDarker: "#6f8fa3" },
+  },
+  desk: {
+    url: "/models/furniture/desk.glb",
+    fit: [.8, .8, 1.6],
+    // Run the desk along the left wall with the drawers facing the room.
+    rotation: [0, Math.PI / 2, 0],
+  },
+  tableLamp: {
+    url: "/models/furniture/table-lamp.glb",
+    fit: [.28, .54, .28],
+  },
+  bookcase: {
+    url: "/models/furniture/bookcase.glb",
+    fit: [.45, 2.2, 1.2],
+    // Stand the bookcase against the left wall.
+    rotation: [0, Math.PI / 2, 0],
+  },
+  mirror: {
+    url: "/models/furniture/mirror.glb",
+    fit: [.08, .95, .8],
+    // Face the oval mirror into the room from above the dresser.
+    rotation: [0, Math.PI / 2, 0],
+  },
+  pottedPlant: {
+    url: "/models/furniture/potted-plant.glb",
+    fit: [.7, 1.1, .7],
+  },
 };
 
 export const ROOM_FURNITURE = {
@@ -116,6 +167,20 @@ export const ROOM_FURNITURE = {
     { model: "stepLadder", position: [3.8, 0, .1], rotation: [0, 0, 0] },
     { model: "stool", position: [.4, 0, -1.85], rotation: [0, Math.PI, 0] },
   ],
+  bedroom: [
+    { model: "bed", position: [2.4, 0, -3.7], rotation: [0, 0, 0] },
+    { model: "nightstand", position: [.85, 0, -4.35], rotation: [0, 0, 0] },
+    { model: "nightstand", position: [3.95, 0, -4.35], rotation: [0, 0, 0] },
+    { model: "tableLamp", position: [3.95, .54, -4.35], rotation: [0, 0, 0] },
+    { model: "wardrobe", position: [-4.55, 0, -3.1], rotation: [0, 0, 0] },
+    { model: "bookcase", position: [-4.55, 0, -1.35], rotation: [0, 0, 0] },
+    { model: "dresser", position: [-4.55, 0, .2], rotation: [0, 0, 0] },
+    { model: "mirror", position: [-4.9, 1.6, .2], rotation: [0, 0, 0] },
+    { model: "desk", position: [-4.45, 0, 2.7], rotation: [0, 0, 0] },
+    { model: "chair", position: [-3.45, 0, 2.7], rotation: [0, -Math.PI / 2, 0] },
+    { model: "rug", position: [.45, .055, .2], rotation: [0, 0, 0] },
+    { model: "pottedPlant", position: [4.25, .04, 3.6], rotation: [0, 0, 0] },
+  ],
 };
 
 export const FURNITURE_CREDITS = [
@@ -135,4 +200,14 @@ export const FURNITURE_CREDITS = [
   { key: "toolbox", title: "Toolbox", author: "CreativeTrio", license: "CC0 1.0", url: "https://poly.pizza/m/3ImQcIK0Gp" },
   { key: "stepLadder", title: "Ladder", author: "CreativeTrio", license: "CC0 1.0", url: "https://poly.pizza/m/p1RR8Ls9EH" },
   { key: "stool", title: "Stool", author: "Quaternius", license: "CC0 1.0", url: "https://poly.pizza/m/TvaOenUAni" },
+  { key: "bed", title: "Bed", author: "CreativeTrio", license: "CC0 1.0", url: "https://poly.pizza/m/rXo5Rkl5LC" },
+  { key: "nightstand", title: "Night Stand", author: "Quaternius", license: "CC0 1.0", url: "https://poly.pizza/m/A9vPgVUrF9" },
+  { key: "dresser", title: "Dresser", author: "CreativeTrio", license: "CC0 1.0", url: "https://poly.pizza/m/Ud8QR8Ku9e" },
+  { key: "wardrobe", title: "Closet", author: "Quaternius", license: "CC0 1.0", url: "https://poly.pizza/m/BHEVb1DIuH" },
+  { key: "rug", title: "Rug Rectangle", author: "Kenney", license: "CC0 1.0", url: "https://poly.pizza/m/k5oJLb49gw" },
+  { key: "desk", title: "Desk", author: "CreativeTrio", license: "CC0 1.0", url: "https://poly.pizza/m/YJyJam67hJ" },
+  { key: "tableLamp", title: "Lamp With Shade", author: "CreativeTrio", license: "CC0 1.0", url: "https://poly.pizza/m/1nKtMmYxLT" },
+  { key: "bookcase", title: "Bookcase with Books", author: "Quaternius", license: "CC0 1.0", url: "https://poly.pizza/m/tACDGJ4CGW" },
+  { key: "mirror", title: "Mirror", author: "Isa Lousberg", license: "CC0 1.0", url: "https://poly.pizza/m/2WQIUVj5qr" },
+  { key: "pottedPlant", title: "Potted Plant", author: "CreativeTrio", license: "CC0 1.0", url: "https://poly.pizza/m/GJ3Bm5FDE4" },
 ];

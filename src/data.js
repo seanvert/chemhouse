@@ -1,6 +1,7 @@
 export const ROOMS = [
   { id: "kitchen", label: "Kitchen", icon: "🍳" },
   { id: "living", label: "Living Room", icon: "🛋️" },
+  { id: "bedroom", label: "Bedroom", icon: "🛏️" },
   { id: "bathroom", label: "Bathroom", icon: "🧼" },
   { id: "garage", label: "Garage", icon: "🔋" },
 ];
@@ -167,6 +168,58 @@ export const ITEMS = {
       { name: "Nitrogen", formula: "N₂", role: "Inert propellant gas pressurizing the cylinder", wiki: "Nitrogen" },
     ],
   },
+  blanket: {
+    name: "Wool Blanket", room: "bedroom", kind: "blanket", position: [2.4, .59, -2.95],
+    tags: ["wool", "protein", "keratin", "textile", "lanolin", "sulfur"],
+    summary: "Warm woven wool textile built from crimped protein fibers that trap insulating air.",
+    chemicals: [
+      { name: "Keratin", formula: "C₄₇H₈₃N₁₇O₁₅S₂", role: "Sulfur-rich structural protein in wool fibers", wiki: "Keratin" },
+      { name: "Lanolin", formula: "C₃₄H₆₈O₂", role: "Natural wax coating that makes wool water-resistant", wiki: "Lanolin" },
+      { name: "Cystine", formula: "C₆H₁₂N₂O₄S₂", role: "Amino acid whose disulfide bridges give wool elasticity", wiki: "Cystine" },
+    ],
+  },
+  book: {
+    name: "Open Book", room: "bedroom", kind: "book", position: [-4.38, .57, 2.25],
+    tags: ["paper", "cellulose", "lignin", "pigment", "print", "polymer"],
+    summary: "Printed pages of pressed plant fibers coated with mineral pigment and carbon ink.",
+    chemicals: [
+      { name: "Cellulose", formula: "(C₆H₁₀O₅)ₙ", role: "Main structural polymer in paper fibers", wiki: "Cellulose" },
+      { name: "Lignin", formula: "C₈₁H₉₂O₂₁", role: "Aromatic polymer that makes paper yellow with age", wiki: "Lignin" },
+      { name: "Titanium dioxide", formula: "TiO₂", role: "White opacifier and bright paper coating pigment", wiki: "Titanium_dioxide" },
+      { name: "Carbon black", formula: "C", role: "Fine carbon pigment used in black printing ink", wiki: "Carbon_black" },
+    ],
+  },
+  glasses: {
+    name: "Reading Glasses", room: "bedroom", kind: "glasses", position: [.85, .55, -4.35],
+    tags: ["polymer", "polycarbonate", "bisphenol", "lens", "acetate", "optical"],
+    summary: "Lightweight spectacles pairing impact-resistant polymer lenses with molded acetate frames.",
+    chemicals: [
+      { name: "Polycarbonate", formula: "(C₁₆H₁₄O₃)ₙ", role: "Impact-resistant transparent lens polymer", wiki: "Polycarbonate" },
+      { name: "Bisphenol A", formula: "C₁₅H₁₆O₂", role: "Monomer used to manufacture polycarbonate", wiki: "Bisphenol_A" },
+      { name: "Cellulose acetate", formula: "(C₁₀H₁₆O₈)ₙ", role: "Lightweight bioplastic used for spectacle frames", wiki: "Cellulose_acetate" },
+    ],
+  },
+  perfume: {
+    name: "Perfume Bottle", room: "bedroom", kind: "perfume", position: [-4.4, .91, .2],
+    tags: ["fragrance", "alcohol", "terpene", "ester", "volatile", "aroma"],
+    summary: "Alcohol-based fragrance blending volatile citrus terpenes and floral scent molecules.",
+    chemicals: [
+      { name: "Ethanol", formula: "C₂H₅OH", role: "Volatile solvent that carries fragrance into the air", wiki: "Ethanol" },
+      { name: "Limonene", formula: "C₁₀H₁₆", role: "Citrus-scented cyclic terpene", wiki: "Limonene" },
+      { name: "Linalool", formula: "C₁₀H₁₈O", role: "Floral terpene alcohol found in lavender", wiki: "Linalool" },
+      { name: "Geraniol", formula: "C₁₀H₁₈O", role: "Rose-scented monoterpenoid alcohol", wiki: "Geraniol" },
+    ],
+  },
+  slippers: {
+    name: "Foam Slippers", room: "bedroom", kind: "slippers", position: [.55, .07, .2],
+    tags: ["polymer", "foam", "eva", "rubber", "textile", "cushion"],
+    summary: "Soft house slippers with molded foam soles and cozy synthetic textile uppers.",
+    chemicals: [
+      { name: "Ethylene-vinyl acetate", formula: "(C₂H₄)ₙ(C₄H₆O₂)ₘ", role: "Cushiony copolymer foam used for the sole", wiki: "Ethylene-vinyl_acetate" },
+      { name: "Polyester", formula: "(C₁₀H₈O₄)ₙ", role: "Durable synthetic fibers in the upper fabric", wiki: "Polyester" },
+      { name: "Natural rubber", formula: "(C₅H₈)ₙ", role: "Elastic polyisoprene that adds grip", wiki: "Natural_rubber" },
+    ],
+  },
 };
 
 export const CHEMICALS = [];
@@ -190,4 +243,9 @@ export const QUESTS = [
   { prompt: "Find a ketone solvent used for stripping paint and resin.", answers: ["acetone"], hint: "Look on the Garage workbench for a red metal solvent tin." },
   { prompt: "Find a lithium cathode compound powering a touchscreen device.", answers: ["smartphone"], hint: "Check the Living Room coffee table." },
   { prompt: "Find a magnesium salt used for soothing warm bath soaks.", answers: ["epsom"], hint: "Look on the round stool next to the Bathroom tub." },
+  { prompt: "Find a sulfur-rich protein fiber that keeps you warm in the Bedroom.", answers: ["blanket"], hint: "Check the foot of the bed for a rolled-up wool blanket." },
+  { prompt: "Find an aromatic polymer that makes paper turn yellow with age.", answers: ["book"], hint: "Look on the Bedroom desk for an open book." },
+  { prompt: "Find a transparent impact-resistant polymer used in eyeglass lenses.", answers: ["glasses"], hint: "Check the bedside table on the left side of the bed." },
+  { prompt: "Find a citrus terpene dissolved in a volatile alcohol.", answers: ["perfume"], hint: "Look on the dresser along the Bedroom's left wall." },
+  { prompt: "Find a copolymer foam that cushions your steps.", answers: ["slippers"], hint: "Look on the rug in the middle of the Bedroom." },
 ];

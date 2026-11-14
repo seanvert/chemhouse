@@ -25,6 +25,16 @@ otherwise unmodified.
 | Living room | Lamp Round Floor | Kenney | CC0 1.0 | https://poly.pizza/m/8LiDIfXVLi | Scaled, placed near the bookshelf |
 | Living room | Bookshelf | CreativeTrio | CC0 1.0 | https://poly.pizza/m/30Iealxb0p | Scaled and rotated against the left wall |
 | Living room | Alarm Clock | CreativeTrio | CC0 1.0 | https://poly.pizza/m/y5f363OS9C | Scaled, placed on the media console |
+| Bedroom | Bed | CreativeTrio | CC0 1.0 | https://poly.pizza/m/rXo5Rkl5LC | Scaled, placed against the back wall |
+| Bedroom | Night Stand | Quaternius | CC0 1.0 | https://poly.pizza/m/A9vPgVUrF9 | Scaled, two placed beside the bed |
+| Bedroom | Dresser | CreativeTrio | CC0 1.0 | https://poly.pizza/m/Ud8QR8Ku9e | Scaled and rotated against the left wall |
+| Bedroom | Closet | Quaternius | CC0 1.0 | https://poly.pizza/m/BHEVb1DIuH | Scaled and rotated against the left wall |
+| Bedroom | Rug Rectangle | Kenney | CC0 1.0 | https://poly.pizza/m/k5oJLb49gw | Recolored blue-gray, scaled, placed in the center of the room |
+| Bedroom | Desk | CreativeTrio | CC0 1.0 | https://poly.pizza/m/YJyJam67hJ | Scaled and rotated against the left wall |
+| Bedroom | Lamp With Shade | CreativeTrio | CC0 1.0 | https://poly.pizza/m/1nKtMmYxLT | Scaled, two placed on the nightstands |
+| Bedroom | Bookcase with Books | Quaternius | CC0 1.0 | https://poly.pizza/m/tACDGJ4CGW | Scaled and rotated against the left wall |
+| Bedroom | Mirror | Isa Lousberg | CC0 1.0 | https://poly.pizza/m/2WQIUVj5qr | Scaled and rotated above the dresser |
+| Bedroom | Potted Plant | CreativeTrio | CC0 1.0 | https://poly.pizza/m/GJ3Bm5FDE4 | Scaled, placed in the front-right corner |
 | Bathroom | Toilet | Quaternius | CC0 1.0 | https://poly.pizza/m/WAu50yGFVt | Scaled and rotated beside the bathtub |
 | Bathroom | Rug Doormat | Kenney | CC0 1.0 | https://poly.pizza/m/nwwFXS6B9T | Scaled into a bath mat in front of the tub |
 | Bathroom | Cabinet | CreativeTrio | CC0 1.0 | https://poly.pizza/m/wOiMrnUuhe | Scaled and rotated against the front-left wall |

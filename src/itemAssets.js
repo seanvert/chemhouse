@@ -94,6 +94,29 @@ export const ITEM_ASSETS = {
     url: "/models/items/extinguisher.glb",
     fit: [.7, 1.6, .95],
   },
+  blanket: {
+    url: "/models/items/blanket.glb",
+    fit: [.7, .14, .3],
+    // Lay the rolled blanket across the foot of the bed.
+    rotation: [0, Math.PI / 2, 0],
+    recolor: { foliage: "#e8d8bc", rock: "#8b5e34" },
+  },
+  glasses: {
+    url: "/models/items/glasses.glb",
+    fit: [.3, .07, .26],
+  },
+  perfume: {
+    url: "/models/items/perfume.glb",
+    fit: [.14, .34, .14],
+  },
+  book: {
+    url: "/models/items/book.glb",
+    fit: [.58, .12, .44],
+  },
+  slippers: {
+    url: "/models/items/slippers.glb",
+    fit: [.55, .17, .44],
+  },
 };
 
 export const ITEM_CREDITS = [
@@ -115,4 +138,9 @@ export const ITEM_CREDITS = [
   { key: "superglue", title: "Lotion Tube", author: "MilkAndBanana", license: "CC0 1.0", url: "https://poly.pizza/m/tacHJc7TlK" },
   { key: "acetone", title: "Paint Can", author: "Jarlan Perez", license: "CC BY 3.0", url: "https://poly.pizza/m/9pyBQ8e4tSy" },
   { key: "extinguisher", title: "Fire Extinguisher", author: "Jarlan Perez", license: "CC BY 3.0", url: "https://poly.pizza/m/71rR7PaeXNN" },
+  { key: "blanket", title: "Bedroll", author: "Kenney", license: "CC0 1.0", url: "https://poly.pizza/m/efwd5fjuMU" },
+  { key: "book", title: "Open Book", author: "Quaternius", license: "CC0 1.0", url: "https://poly.pizza/m/FsCIGEfTEs" },
+  { key: "glasses", title: "Glasses", author: "iPoly3D", license: "CC0 1.0", url: "https://poly.pizza/m/p5QgQxkMBE" },
+  { key: "perfume", title: "Prop Bottle", author: "Quaternius", license: "CC0 1.0", url: "https://poly.pizza/m/uRzqB8lopZ" },
+  { key: "slippers", title: "Slippers", author: "Isa Lousberg", license: "CC0 1.0", url: "https://poly.pizza/m/XV1WqNYen3" },
 ];
