@@ -1,0 +1,141 @@
+:root {
+  color-scheme: dark;
+  --panel: rgba(15, 23, 42, .92);
+  --border: rgba(148, 163, 184, .24);
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --accent: #38bdf8;
+  --green: #34d399;
+  --amber: #fbbf24;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  color: var(--text);
+  background: radial-gradient(circle at top, #26364a, #090e1a 72%);
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+}
+button, input { font: inherit; }
+button { color: inherit; }
+#root, .app { width: 100%; height: 100%; }
+.app { position: relative; }
+.scene { position: absolute !important; inset: 0; }
+.hud-top {
+  position: fixed; z-index: 3; top: 16px; left: 16px;
+  display: flex; flex-direction: column; gap: 10px;
+  max-width: calc(100vw - 32px);
+}
+.hud-row, .room-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; }
+.brand, .score-pill, .chemdex-pill, .room-btn, .quest-card, .inspector, .modal {
+  background: var(--panel); backdrop-filter: blur(14px); border: 1px solid var(--border);
+}
+.brand, .score-pill, .chemdex-pill { padding: 9px 13px; border-radius: 13px; }
+.brand h1 { margin: 0; font-size: 1rem; }
+.chemdex-pill, .room-btn, .mini-btn, .ask-btn, .close-btn, .chem-chip {
+  cursor: pointer; transition: .18s ease;
+}
+.chemdex-pill:hover, .room-btn:hover, .room-btn.active { border-color: var(--accent); color: var(--accent); }
+.chemdex-pill { display: flex; align-items: center; gap: 10px; font-size: .82rem; }
+.progress-track { width: 70px; height: 7px; overflow: hidden; border-radius: 99px; background: #ffffff20; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--green)); }
+.score-pill { color: var(--amber); font-size: .84rem; font-weight: 700; }
+.language-control {
+  display: flex; align-items: center; gap: 7px; padding: 6px 9px;
+  color: var(--muted); background: var(--panel); border: 1px solid var(--border);
+  border-radius: 11px; font-size: .74rem;
+}
+.language-control select {
+  max-width: 115px; padding: 3px 6px; color: var(--text);
+  background: #0f172ac7; border: 1px solid var(--border); border-radius: 7px;
+}
+.room-btn { padding: 8px 13px; border-radius: 99px; font-size: .82rem; }
+.credits-btn { padding: 8px 11px; border-radius: 11px; }
+.quest-card {
+  position: fixed; z-index: 3; bottom: 16px; left: 16px; width: 375px;
+  max-width: calc(100vw - 32px); padding: 15px; border-radius: 16px;
+  display: flex; flex-direction: column; gap: 10px;
+  box-shadow: 0 12px 32px #0006;
+}
+.quest-top, .quest-actions, .inspector-header, .chem-chip-top, .modal-header {
+  display: flex; justify-content: space-between; align-items: center; gap: 8px;
+}
+.quest-badge, .room-tag, .section-label {
+  color: var(--amber); font-size: .72rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.quest-prompt { margin: 0; font-size: .9rem; line-height: 1.45; }
+.feedback { font-size: .8rem; line-height: 1.4; padding: 8px 10px; border-radius: 10px; }
+.feedback.success { color: #a7f3d0; background: #34d39929; border: 1px solid var(--green); }
+.feedback.miss { color: #fecaca; background: #f8717129; border: 1px solid #f87171; }
+.feedback.hint { color: #fde68a; background: #fbbf2429; border: 1px solid var(--amber); }
+.ask-row { display: flex; gap: 6px; border-top: 1px solid var(--border); padding-top: 10px; }
+.ask-input {
+  min-width: 0; flex: 1; padding: 7px 10px; color: var(--text);
+  background: #0f172ac7; border: 1px solid var(--border); border-radius: 9px;
+}
+.ask-input:focus { outline: 1px solid var(--accent); }
+.ask-btn { padding: 7px 12px; color: #082f49; background: var(--accent); border: 0; border-radius: 9px; font-weight: 700; }
+.mini-btn, .close-btn { color: var(--text); background: #ffffff0f; border: 1px solid var(--border); border-radius: 8px; }
+.mini-btn { padding: 5px 9px; font-size: .74rem; font-weight: 600; }
+.mini-btn:hover, .close-btn:hover { border-color: var(--accent); color: var(--accent); }
+.close-btn { width: 30px; height: 30px; }
+.inspector {
+  position: fixed; z-index: 4; top: 16px; right: 16px; bottom: 16px; width: 390px;
+  max-width: calc(100vw - 32px); padding: 20px; border-radius: 18px;
+  display: flex; flex-direction: column; gap: 14px; overflow-y: auto;
+  transform: translateX(calc(100% + 24px)); transition: transform .28s cubic-bezier(.22, 1, .36, 1);
+}
+.inspector.open { transform: translateX(0); }
+.inspector-header { align-items: flex-start; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+.room-tag { color: var(--green); }
+.inspector-header h2 { margin: 4px 0 0; font-size: 1.25rem; }
+.item-summary { margin: 0; color: #cbd5e1; font-size: .86rem; line-height: 1.45; }
+.section-label { color: var(--muted); }
+.chem-list { display: flex; flex-direction: column; gap: 8px; }
+.chem-chip { text-align: left; padding: 10px 12px; background: #ffffff0a; border: 1px solid var(--border); border-radius: 12px; }
+.chem-chip:hover, .chem-chip.active { background: #38bdf829; border-color: var(--accent); }
+.chem-chip-top { font-size: .86rem; font-weight: 600; }
+.formula { padding: 2px 7px; color: var(--accent); background: #0f172ab3; border-radius: 6px; font: .76rem ui-monospace, monospace; }
+.chem-role { margin-top: 4px; color: var(--muted); font-size: .77rem; }
+.new-badge { margin-left: 6px; padding: 1px 6px; color: #022c22; background: var(--green); border-radius: 99px; font-size: .64rem; }
+.info-card { padding: 14px; background: #0f172aa6; border: 1px solid var(--border); border-radius: 14px; display: flex; flex-direction: column; gap: 9px; }
+.info-card h3, .info-card p { margin: 0; }
+.info-card h3 { font-size: .95rem; }
+.info-card p { color: #e2e8f0; font-size: .82rem; line-height: 1.45; }
+.info-card a { color: var(--accent); font-size: .8rem; text-decoration: none; }
+.molecule-wrap { height: 190px; overflow: hidden; position: relative; border: 1px solid var(--border); border-radius: 12px; background: radial-gradient(circle, #1e3a5f, #0b1220); }
+.molecule-wrap canvas { touch-action: none; }
+.molecule-status { position: absolute; inset: 0; display: grid; place-items: center; padding: 14px; color: var(--muted); font-size: .78rem; text-align: center; pointer-events: none; }
+.wiki-link { color: var(--accent); font-size: .8rem; text-decoration: none; }
+.modal-backdrop { position: fixed; z-index: 8; inset: 0; display: grid; place-items: center; padding: 20px; background: #020617c7; backdrop-filter: blur(8px); }
+.modal { width: 720px; min-width: 0; max-width: calc(100vw - 40px); max-height: 85vh; padding: 22px; border-radius: 20px; display: flex; flex-direction: column; gap: 14px; overflow-x: hidden; }
+.modal-header h2 { margin: 0; font-size: 1.2rem; }
+.modal-header p { margin: 4px 0 0; color: var(--muted); font-size: .82rem; }
+.dex-grid { min-width: 0; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(195px, 1fr)); gap: 10px; }
+.dex-item { padding: 10px 12px; border: 1px solid var(--border); border-radius: 12px; display: flex; flex-direction: column; gap: 4px; }
+.dex-item.unlocked { background: #34d39912; border-color: #34d39973; }
+.dex-item.locked { opacity: .48; }
+.dex-name { font-size: .86rem; font-weight: 700; }
+.dex-meta { color: var(--muted); font-size: .74rem; }
+.credits-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+.credit-link { color: var(--accent); font-size: .74rem; text-decoration: none; }
+.credit-link:hover { text-decoration: underline; }
+.credit-note { margin: 0; color: var(--muted); font-size: .76rem; line-height: 1.45; }
+.toast { position: fixed; z-index: 10; top: 18px; left: 50%; transform: translateX(-50%); padding: 9px 16px; border-radius: 99px; color: #022c22; background: #10b981; font-size: .84rem; font-weight: 700; }
+.tooltip { position: fixed; z-index: 5; pointer-events: none; padding: 6px 10px; color: var(--text); background: #0f172af2; border: 1px solid var(--accent); border-radius: 8px; font-size: .8rem; }
+
+@media (max-width: 760px) {
+  .hud-top { top: 9px; left: 9px; gap: 7px; }
+  .hud-row, .room-nav { gap: 6px; }
+  .brand, .score-pill, .chemdex-pill { padding: 7px 9px; font-size: .74rem; }
+  .language-control { padding: 5px 7px; font-size: .7rem; }
+  .language-control select { max-width: 85px; }
+  .room-btn { padding: 6px 9px; font-size: .72rem; }
+  .progress-track { width: 44px; }
+  .quest-card { bottom: 9px; left: 9px; max-width: calc(100vw - 18px); padding: 12px; }
+  .inspector { top: auto; left: 9px; right: 9px; bottom: 9px; width: auto; max-width: none; max-height: 76vh; padding: 15px; }
+  .molecule-wrap { height: 150px; }
+}
