@@ -33,6 +33,31 @@ function Cylinder({ radiusTop, radiusBottom = radiusTop, height, position, color
   );
 }
 
+function WallCabinet({ width, position, rotation = [0, 0, 0], doors = 2 }) {
+  const doorWidth = (width - .1) / doors;
+  return (
+    <group position={position} rotation={rotation}>
+      <Round size={[width, .9, .52]} color="#e2e8f0" radius={.03} />
+      {Array.from({ length: doors }, (_, index) => {
+        const x = -width / 2 + .05 + doorWidth * (index + .5);
+        const handleSide = index % 2 === 0 ? 1 : -1;
+        return (
+          <group key={index}>
+            <Round size={[doorWidth - .06, .78, .05]} position={[x, 0, .3]} color="#f8fafc" radius={.02} />
+            <Cylinder
+              radiusTop={.018}
+              height={.3}
+              position={[x + handleSide * (doorWidth / 2 - .08), 0, .335]}
+              color="#94a3b8"
+            />
+          </group>
+        );
+      })}
+    </group>
+  );
+}
+
+
 function Sphere({ position, color, scale, rotation = [0, 0, 0], roughness = .55 }) {
   return (
     <mesh position={position} scale={scale} rotation={rotation} castShadow receiveShadow>
@@ -136,8 +161,11 @@ function Kitchen() {
   return (
     <>
       <Box size={[8.2, 1.35, .06]} position={[.7, 2.1, -4.84]} color="#dbeafe" />
-      <Round size={[2.3, 1.45, .16]} position={[-4.84, 2.75, -1]} color="#475569" />
+      <Round size={[.16, 1.45, 2.3]} position={[-4.84, 2.75, -1]} color="#475569" />
       <Box size={[.06, 1.2, 2]} position={[-4.77, 2.75, -1]} color="#7dd3fc" />
+      <WallCabinet width={7.5} position={[.55, 2.55, -4.53]} doors={8} />
+      <WallCabinet width={1} position={[-4.55, 2.55, -2.675]} rotation={[0, Math.PI / 2, 0]} doors={1} />
+      <WallCabinet width={1.3} position={[-4.55, 2.55, .85]} rotation={[0, Math.PI / 2, 0]} doors={2} />
       <Round size={[8.2, 1.32, 1.7]} position={[.7, .66, -4]} color="#f1f5f9" />
       <Round size={[8.36, .12, 1.82]} position={[.7, 1.38, -4]} color="#334155" radius={.03} />
       <Round size={[1.7, 1.32, 4.8]} position={[-4, .66, -.8]} color="#f1f5f9" />
@@ -157,10 +185,12 @@ function Kitchen() {
       ))}
       <Box size={[1.2, .06, .95]} position={[-3.95, 1.44, -1]} color="#94a3b8" />
       <Tube points={[[-4.35, 1.45, -1], [-4.35, 2.05, -1], [-4, 2.15, -1], [-3.95, 1.88, -1]]} radius={.035} color="#cbd5e1" />
-      <Round size={[1.85, 3.65, 1.85]} position={[-3.9, 1.82, 3.2]} color="#93c5fd" radius={.08} />
-      <Box size={[1.88, .04, .05]} position={[-3.9, 2.45, 2.26]} color="#1e3a8a" />
-      <Cylinder radiusTop={.03} height={.95} position={[-3, 1.65, 2.2]} color="#cbd5e1" />
-      <Cylinder radiusTop={.03} height={.65} position={[-3, 2.95, 2.2]} color="#cbd5e1" />
+      <group position={[-3.9, 0, 3.2]} rotation={[0, Math.PI, 0]}>
+        <Round size={[1.85, 3.65, 1.85]} position={[0, 1.82, 0]} color="#93c5fd" radius={.08} />
+        <Box size={[1.88, .04, .05]} position={[0, 2.45, -.94]} color="#1e3a8a" />
+        <Cylinder radiusTop={.03} height={.95} position={[-.9, 1.65, -1]} color="#cbd5e1" />
+        <Cylinder radiusTop={.03} height={.65} position={[-.9, 2.95, -1]} color="#cbd5e1" />
+      </group>
       <Round size={[3.4, 1.02, 2.1]} position={[1.2, .51, 1.3]} color="#78350f" radius={.05} />
       <Round size={[3.75, .14, 2.45]} position={[1.2, 1.09, 1.3]} color="#fde68a" radius={.04} />
     </>
@@ -208,9 +238,9 @@ function Bedroom() {
       <Cylinder radiusTop={.03} height={3.4} position={[-1.7, 3.75, -4.62]} rotation={[0, 0, Math.PI / 2]} color="#92400e" />
       <Round size={[.62, 2.25, .16]} position={[-3.25, 2.6, -4.56]} color="#f5e6d3" radius={.06} />
       <Round size={[.62, 2.25, .16]} position={[-.15, 2.6, -4.56]} color="#f5e6d3" radius={.06} />
-      <Round size={[1.6, .98, .08]} position={[2.4, 2.85, -4.9]} color="#78350f" radius={.03} />
-      <Box size={[1.34, .74, .03]} position={[2.4, 2.85, -4.84]} color="#fda4af" />
-      <Box size={[.92, .16, .035]} position={[2.4, 2.9, -4.82]} color="#fef3c7" />
+      <Round size={[1.6, .98, .08]} position={[2.4, 2.85, -4.87]} color="#78350f" radius={.03} />
+      <Box size={[1.34, .74, .03]} position={[2.4, 2.85, -4.81]} color="#fda4af" />
+      <Box size={[.92, .16, .035]} position={[2.4, 2.9, -4.78]} color="#fef3c7" />
     </>
   );
 }

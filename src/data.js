@@ -28,7 +28,7 @@ export const ITEMS = {
     ],
   },
   bakingsoda: {
-    name: "Baking Soda Box", room: "kitchen", kind: "box", position: [1, 1.82, -4],
+    name: "Baking Soda Box", room: "kitchen", kind: "box", position: [1, 1.44, -4],
     tags: ["base", "alkaline", "salt", "co2", "leavening", "bicarbonate"],
     summary: "Amphoteric white powder used for baking leavening, odor absorption, and cleaning.",
     chemicals: [{ name: "Sodium bicarbonate", formula: "NaHCO₃", role: "Reacts with acids to release CO₂ gas", wiki: "Sodium_bicarbonate" }],
