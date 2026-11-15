@@ -83,7 +83,6 @@ export default function Inspector({ itemKey, item, discovered, onClose }) {
         <a className="wiki-link" href={wiki?.url || "#"} target="_blank" rel="noopener noreferrer">
           {t("readWikipedia")}
         </a>
-        <div className="section-label">{t("moleculePubChem")}</div>
         <MoleculeViewer chemical={selectedChem} />
       </div>
     </aside>

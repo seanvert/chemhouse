@@ -49,18 +49,27 @@ function Molecule({ molecule }) {
 export default function MoleculeViewer({ chemical }) {
   const { t, language } = useI18n();
   const [molecule, setMolecule] = useState(null);
+  const [unavailable, setUnavailable] = useState(false);
   const [status, setStatus] = useState(() => t("selectChemical"));
 
   useEffect(() => {
-    if (!chemical) return undefined;
+    if (!chemical) {
+      setMolecule(null);
+      setUnavailable(false);
+      setStatus(t("selectChemical"));
+      return undefined;
+    }
     const controller = new AbortController();
     setMolecule(null);
+    setUnavailable(false);
     setStatus(t("lookingUpPubChem", { chemical: chemical.name }));
     fetchPubChemMolecule(chemical, controller.signal).then(result => {
       setMolecule(result);
       setStatus("");
     }).catch(error => {
       if (error.name === "AbortError") return;
+      setMolecule(null);
+      setUnavailable(true);
       setStatus(error.message.includes("No 3D") || error.message.includes("coordinates")
         ? t("noConformer")
         : t("moleculeUnavailable"));
@@ -68,12 +77,17 @@ export default function MoleculeViewer({ chemical }) {
     return () => controller.abort();
   }, [chemical, language, t]);
 
+  if (unavailable) return null;
+
   return (
-    <div className="molecule-wrap">
-      <Canvas camera={{ position: [0, 0, 4.4], fov: 40 }} dpr={[1, 1.5]}>
-        {molecule && <Molecule molecule={molecule} />}
-      </Canvas>
-      {status && <div className="molecule-status">{status}</div>}
-    </div>
+    <>
+      <div className="section-label">{t("moleculePubChem")}</div>
+      <div className="molecule-wrap">
+        <Canvas camera={{ position: [0, 0, 4.4], fov: 40 }} dpr={[1, 1.5]}>
+          {molecule && <Molecule molecule={molecule} />}
+        </Canvas>
+        {status && <div className="molecule-status">{status}</div>}
+      </div>
+    </>
   );
 }
